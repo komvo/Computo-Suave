@@ -1,0 +1,127 @@
+import numpy as np
+
+
+def ReLu(x):
+    return np.maximum(0, x)
+
+
+def derivada_ReLu(x):
+    return (x > 0).astype(float)
+
+
+def optimizador(W, gradW, alpha):
+    return W - alpha * gradW
+
+
+class Capa:
+    def __init__(self, entradas, neuronas, activacion=None, bias=False):
+        self.entradas = entradas
+        self.neuronas = neuronas
+        self.activacion = activacion
+        self.bias = bias
+
+        self.pesos = np.random.randn(entradas, neuronas)
+
+        if bias:
+            self.b = np.random.randn(1, neuronas)
+        else:
+            self.b = None
+
+
+    def feed_forward(self, X):
+        self.entrada = X
+        self.z = X @ self.pesos
+
+        if self.bias:
+            self.z += self.b
+
+        if self.activacion is not None:
+            self.salida = self.activacion(self.z)
+        else:
+            self.salida = self.z
+
+        return self.salida
+
+
+    def backward(self, ultima=False, error=None,
+                 delta_siguiente=None, pesos_siguientes=None):
+
+        if ultima:
+            self.delta = error
+        else:
+            self.delta = delta_siguiente @ pesos_siguientes.T
+
+            if self.activacion == ReLu:
+                self.delta *= derivada_ReLu(self.z)
+
+        self.grad_pesos = self.entrada.T @ self.delta
+
+        if self.bias:
+            self.grad_bias = np.sum(
+                self.delta,
+                axis=0,
+                keepdims=True
+            )
+
+        return self.delta
+
+
+# Datos indicados en la practica
+X = np.ones((3, 2)) * 5
+y = np.zeros((3, 2))
+
+
+# Primera capa
+capa1 = Capa(
+    entradas=2,
+    neuronas=4,
+    activacion=ReLu,
+    bias=True
+)
+
+# Segunda capa
+capa2 = Capa(
+    entradas=4,
+    neuronas=2,
+    activacion=None,
+    bias=True
+)
+
+
+# Feed Forward
+salida1 = capa1.feed_forward(X)
+resultado = capa2.feed_forward(salida1)
+
+print("Resultado:")
+print(resultado)
+
+
+# Calculo del error
+error = resultado - y
+
+
+# Backpropagation de la segunda capa
+delta2 = capa2.backward(
+    ultima=True,
+    error=error
+)
+
+# Backpropagation de la primera capa
+delta1 = capa1.backward(
+    ultima=False,
+    delta_siguiente=delta2,
+    pesos_siguientes=capa2.pesos
+)
+
+
+print("\nDelta capa 2:")
+print(delta2)
+
+print("\nGradiente capa 2:")
+print(capa2.grad_pesos)
+
+print("\nDelta capa 1:")
+print(delta1)
+
+print("\nGradiente capa 1:")
+print(capa1.grad_pesos)
