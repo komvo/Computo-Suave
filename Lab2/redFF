@@ -1,0 +1,67 @@
+import numpy as np
+
+
+def ReLu(x):
+    return np.maximum(0, x)
+
+
+class Capa:
+    def __init__(self, entradas, neuronas, activacion=None, bias=False):
+        self.entradas = entradas
+        self.neuronas = neuronas
+        self.activacion = activacion
+        self.bias = bias
+
+        # Pesos normales de la capa
+        # self.pesos = np.random.randn(entradas, neuronas)
+
+        if bias:
+            self.b = np.random.randn(1, neuronas)
+        else:
+            self.b = None
+
+
+    def feed_forward(self, X):
+        salida = X @ self.pesos
+
+        if self.bias:
+            salida += self.b
+
+        if self.activacion is not None:
+            salida = self.activacion(salida)
+
+        return salida
+
+
+# Datos para comprobar la capa
+X = np.array([
+    [1, 2, 3],
+    [4, 5, 6]
+])
+
+W = np.array([
+    [0,   0,   0.1, 0.2],
+    [0.3, -1,  0.4, 0.5],
+    [1,   0.6, 0.7, 0.8]
+])
+
+
+capa = Capa(3, 4, ReLu, False)
+
+# Pesos conocidos solamente para realizar la prueba
+capa.pesos = W
+
+resultado_capa = capa.feed_forward(X)
+
+# Mismo calculo realizado directamente
+resultado_prueba = ReLu(X @ W)
+
+
+print("Resultado de la capa:")
+print(resultado_capa)
+
+print("\nResultado de comprobacion:")
+print(resultado_prueba)
+
+print("\nLos resultados son iguales:")
+print(np.allclose(resultado_capa, resultado_prueba))
