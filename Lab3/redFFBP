@@ -40,6 +40,7 @@ class Capa:
 
         if ultima:
             self.delta = error
+
         else:
             self.delta = delta_siguiente @ pesos_siguientes.T
 
@@ -47,6 +48,13 @@ class Capa:
                 self.delta *= (self.z > 0)
 
         self.grad_pesos = self.entrada.T @ self.delta
+
+        if self.bias:
+            self.grad_bias = np.sum(
+                self.delta,
+                axis=0,
+                keepdims=True
+            )
 
         return self.delta
 
@@ -57,52 +65,62 @@ y = np.zeros((3, 2))
 
 capa1 = Capa(
     entradas=2,
-    neuronas=4,
+    neuronas=13,
     activacion=ReLu,
     bias=True
 )
 
 capa2 = Capa(
-    entradas=4,
+    entradas=13,
     neuronas=2,
     activacion=None,
     bias=True
 )
 
 
-# Feed Forward
+epocas = 100
+alpha = 0.001
+
+
+for epoca in range(epocas):
+
+    # Feed Forward
+    salida1 = capa1.feed_forward(X)
+    resultado = capa2.feed_forward(salida1)
+
+    # Error
+    error = resultado - y
+
+    # Perdida
+    perdida = 0.5 * np.sum(error ** 2)
+
+    # Backpropagation
+    delta2 = capa2.backward(
+        ultima=True,
+        error=error
+    )
+
+    delta1 = capa1.backward(
+        ultima=False,
+        delta_siguiente=delta2,
+        pesos_siguientes=capa2.pesos
+    )
+
+    # Actualizacion de pesos
+    capa1.pesos -= alpha * capa1.grad_pesos
+    capa2.pesos -= alpha * capa2.grad_pesos
+
+    # Actualizacion de bias
+    capa1.b -= alpha * capa1.grad_bias
+    capa2.b -= alpha * capa2.grad_bias
+
+    if epoca == 0 or (epoca + 1) % 10 == 0:
+        print("Epoca:", epoca + 1, "- Perdida:", perdida)
+
+
+# Resultado final
 salida1 = capa1.feed_forward(X)
 resultado = capa2.feed_forward(salida1)
 
-print("Resultado:")
+print("\nResultado final:")
 print(resultado)
-
-
-# Error
-error = resultado - y
-
-
-# Backpropagation
-delta2 = capa2.backward(
-    ultima=True,
-    error=error
-)
-
-delta1 = capa1.backward(
-    ultima=False,
-    delta_siguiente=delta2,
-    pesos_siguientes=capa2.pesos
-)
-
-
-print("\nDelta capa 2:")
-print(delta2)
-
-print("\nGradiente capa 2:")
-print(capa2.grad_pesos)
-
-print("\nDelta capa 1:")
-print(delta1)
-
-print("\nGradiente capa 1:")
-print(capa1.grad_pesos)
