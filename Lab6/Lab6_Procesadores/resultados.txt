@@ -1,0 +1,19 @@
+LABORATORIO 6 - PROBLEMA 2: DISTRIBUCION DE TAREAS
+Semilla: 1288703
+Tiempos: [8, 5, 7, 3, 6, 4]
+Poblacion: 30 | seleccion: ruleta | cruce: un punto | mutacion: 0.05 | elite: 50%
+Generacion | Cromosoma | Cargas P1/P2/P3 | M(x) | Fitness
+         0 | 132231 | [12, 10, 11]      |   12 | 0.07692308
+         1 | 132231 | [12, 10, 11]      |   12 | 0.07692308
+         2 | 123123 | [11, 11, 11]      |   11 | 0.08333333
+
+RESULTADO FINAL
+Cromosoma decimal: 123123
+P1: T1, T4 | carga=11
+P2: T2, T5 | carga=11
+P3: T3, T6 | carga=11
+Tiempo total para terminar: 11 (maximo de cargas)
+Fitness: 0.08333333 = 1/(1+11)
+Generacion final: 2
+Cota inferior teorica: ceil(33/3)=11
+Optimo comprobado por cota: True
