@@ -1,0 +1,222 @@
+{
+  "dataset": "HydroGrowNet Batavia",
+  "n": 222,
+  "n_train": 133,
+  "n_test": 89,
+  "base": {
+    "R2": 0.9173151342889572,
+    "R": 0.9580037694694108,
+    "MAE": 11.19138310898827,
+    "RMSE": 16.50835428705458,
+    "MSE": 272.5257612669134,
+    "loss_final": 0.0294875222621561,
+    "epocas": 368,
+    "parametros": 865,
+    "red": "5-32-16-8-1 | relu | lr=0.001 | alpha=0.0001 | batch=auto",
+    "variables": [
+      "plant_height",
+      "shoot_length",
+      "root_length",
+      "stem_diameter",
+      "leaves"
+    ],
+    "cv": 0.8858681910566538
+  },
+  "intermedia": {
+    "R2": 0.9310159399607799,
+    "R": 0.9672688618839536,
+    "MAE": 9.344591847552127,
+    "RMSE": 15.078743151132548,
+    "MSE": 227.3684950178267,
+    "loss_final": 0.034582740963361024,
+    "epocas": 194,
+    "parametros": 769,
+    "red": "2-32-16-8-1 | relu | lr=0.001 | alpha=0.0001 | batch=auto"
+  },
+  "optimizada": {
+    "R2": 0.8650375216922495,
+    "R": 0.9640519199716897,
+    "MAE": 15.285681571523657,
+    "RMSE": 21.091005761374184,
+    "MSE": 444.8305240263191,
+    "loss_final": 0.02127359603799061,
+    "epocas": 199,
+    "parametros": 33,
+    "red": "2-8-1 | relu | lr=0.001 | alpha=0.001 | batch=64",
+    "variables": [
+      "stem_diameter",
+      "leaves"
+    ],
+    "cv": 0.9262667065798401,
+    "cromosoma": "0-1-4-3-0-2-2-2-0-0-0-1-1-0"
+  },
+  "robustez": {
+    "base_mean": 0.9204957461422507,
+    "base_std": 0.01021743289841427,
+    "int_mean": 0.926920671228932,
+    "int_std": 0.018695202817546074,
+    "opt_mean": 0.9385719132849661,
+    "opt_std": 0.00831537857514671,
+    "base_mae": 11.064948403860615,
+    "int_mae": 9.684778773639971,
+    "opt_mae": 8.602394950232048
+  },
+  "historial": [
+    {
+      "generacion": 0,
+      "mejor": 0.9184492469738718,
+      "promedio": 0.46244525756632543,
+      "cromosoma": "2-3-4-3-2-1-0-0-0-0-0-0-1-1",
+      "red": "2-32-64-32-1 | logistic | lr=0.0003 | alpha=1e-05 | batch=16"
+    },
+    {
+      "generacion": 1,
+      "mejor": 0.9184492469738718,
+      "promedio": 0.7596005103291957,
+      "cromosoma": "2-3-4-3-2-1-0-0-0-0-0-0-1-1",
+      "red": "2-32-64-32-1 | logistic | lr=0.0003 | alpha=1e-05 | batch=16"
+    },
+    {
+      "generacion": 2,
+      "mejor": 0.9184492469738718,
+      "promedio": 0.7701429535957708,
+      "cromosoma": "2-3-4-3-2-1-0-0-0-0-0-0-1-1",
+      "red": "2-32-64-32-1 | logistic | lr=0.0003 | alpha=1e-05 | batch=16"
+    },
+    {
+      "generacion": 3,
+      "mejor": 0.9233064863072755,
+      "promedio": 0.7825896824120734,
+      "cromosoma": "0-1-4-3-0-1-2-2-0-0-0-1-1-0",
+      "red": "2-8-1 | relu | lr=0.0003 | alpha=0.001 | batch=64"
+    },
+    {
+      "generacion": 4,
+      "mejor": 0.9262667065798401,
+      "promedio": 0.8097043352644038,
+      "cromosoma": "0-1-4-3-0-2-2-2-0-0-0-1-1-0",
+      "red": "2-8-1 | relu | lr=0.001 | alpha=0.001 | batch=64"
+    },
+    {
+      "generacion": 5,
+      "mejor": 0.9262667065798401,
+      "promedio": 0.8660243172674411,
+      "cromosoma": "0-1-4-3-0-2-2-2-0-0-0-1-1-0",
+      "red": "2-8-1 | relu | lr=0.001 | alpha=0.001 | batch=64"
+    },
+    {
+      "generacion": 6,
+      "mejor": 0.9262667065798401,
+      "promedio": 0.7593348786712509,
+      "cromosoma": "0-1-4-3-0-2-2-2-0-0-0-1-1-0",
+      "red": "2-8-1 | relu | lr=0.001 | alpha=0.001 | batch=64"
+    },
+    {
+      "generacion": 7,
+      "mejor": 0.9262667065798401,
+      "promedio": 0.7295757917339253,
+      "cromosoma": "0-1-4-3-0-2-2-2-0-0-0-1-1-0",
+      "red": "2-8-1 | relu | lr=0.001 | alpha=0.001 | batch=64"
+    },
+    {
+      "generacion": 8,
+      "mejor": 0.9262667065798401,
+      "promedio": 0.7827025199165201,
+      "cromosoma": "0-1-4-3-0-2-2-2-0-0-0-1-1-0",
+      "red": "2-8-1 | relu | lr=0.001 | alpha=0.001 | batch=64"
+    },
+    {
+      "generacion": 9,
+      "mejor": 0.9262667065798401,
+      "promedio": 0.859605374180175,
+      "cromosoma": "0-1-4-3-0-2-2-2-0-0-0-1-1-0",
+      "red": "2-8-1 | relu | lr=0.001 | alpha=0.001 | batch=64"
+    },
+    {
+      "generacion": 10,
+      "mejor": 0.9262667065798401,
+      "promedio": 0.8179362631705939,
+      "cromosoma": "0-1-4-3-0-2-2-2-0-0-0-1-1-0",
+      "red": "2-8-1 | relu | lr=0.001 | alpha=0.001 | batch=64"
+    },
+    {
+      "generacion": 11,
+      "mejor": 0.9262667065798401,
+      "promedio": 0.898370291477359,
+      "cromosoma": "0-1-4-3-0-2-2-2-0-0-0-1-1-0",
+      "red": "2-8-1 | relu | lr=0.001 | alpha=0.001 | batch=64"
+    },
+    {
+      "generacion": 12,
+      "mejor": 0.9262667065798401,
+      "promedio": 0.8118063171566089,
+      "cromosoma": "0-1-4-3-0-2-2-2-0-0-0-1-1-0",
+      "red": "2-8-1 | relu | lr=0.001 | alpha=0.001 | batch=64"
+    },
+    {
+      "generacion": 13,
+      "mejor": 0.9262667065798401,
+      "promedio": 0.809472921449291,
+      "cromosoma": "0-1-4-3-0-2-2-2-0-0-0-1-1-0",
+      "red": "2-8-1 | relu | lr=0.001 | alpha=0.001 | batch=64"
+    },
+    {
+      "generacion": 14,
+      "mejor": 0.9262667065798401,
+      "promedio": 0.81136978234984,
+      "cromosoma": "0-1-4-3-0-2-2-2-0-0-0-1-1-0",
+      "red": "2-8-1 | relu | lr=0.001 | alpha=0.001 | batch=64"
+    },
+    {
+      "generacion": 15,
+      "mejor": 0.9262667065798401,
+      "promedio": 0.7857167751436557,
+      "cromosoma": "0-1-4-3-0-2-2-2-0-0-0-1-1-0",
+      "red": "2-8-1 | relu | lr=0.001 | alpha=0.001 | batch=64"
+    },
+    {
+      "generacion": 16,
+      "mejor": 0.9262667065798401,
+      "promedio": 0.8459148894701461,
+      "cromosoma": "0-1-4-3-0-2-2-2-0-0-0-1-1-0",
+      "red": "2-8-1 | relu | lr=0.001 | alpha=0.001 | batch=64"
+    },
+    {
+      "generacion": 17,
+      "mejor": 0.9262667065798401,
+      "promedio": 0.9085773817466718,
+      "cromosoma": "0-1-4-3-0-2-2-2-0-0-0-1-1-0",
+      "red": "2-8-1 | relu | lr=0.001 | alpha=0.001 | batch=64"
+    },
+    {
+      "generacion": 18,
+      "mejor": 0.9262667065798401,
+      "promedio": 0.8893580886702629,
+      "cromosoma": "0-1-4-3-0-2-2-2-0-0-0-1-1-0",
+      "red": "2-8-1 | relu | lr=0.001 | alpha=0.001 | batch=64"
+    },
+    {
+      "generacion": 19,
+      "mejor": 0.9262667065798401,
+      "promedio": 0.7828455627356316,
+      "cromosoma": "0-1-4-3-0-2-2-2-0-0-0-1-1-0",
+      "red": "2-8-1 | relu | lr=0.001 | alpha=0.001 | batch=64"
+    },
+    {
+      "generacion": 20,
+      "mejor": 0.9262667065798401,
+      "promedio": 0.8418809403481058,
+      "cromosoma": "0-1-4-3-0-2-2-2-0-0-0-1-1-0",
+      "red": "2-8-1 | relu | lr=0.001 | alpha=0.001 | batch=64"
+    }
+  ],
+  "redes_evaluadas": 331,
+  "ga": {
+    "num_inv": 24,
+    "max_generaciones": 20,
+    "torneo": 3,
+    "prob_mutacion": 0.15,
+    "por_remplazo": 0.3,
+    "folds": 3
+  }
+}
